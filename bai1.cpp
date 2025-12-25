@@ -60,6 +60,43 @@ void timSoLonNhatVaNhoNhat(int arr[], int n){
 
 }
 
+void timSoLanXuatHien(int arr[], int soluong, int soLanCanTim){
+	int danhDauIndex[soluong];
+	int index = 0;
+	while(index < soluong){
+		danhDauIndex[index] = 0;
+		index ++; 
+	}
+	
+	int coTimThay = 0;
+	int idx = 0;
+	
+	while(idx < soluong){
+		if(danhDauIndex[idx] == 1){
+			idx ++;
+			continue;
+		}
+		
+		int bienDem = 1;
+		int j = idx + 1;
+		
+		while(j < soluong){
+			if(arr[j] == arr[idx] ){
+				bienDem ++;
+				danhDauIndex[j] = 1;
+			}
+			j++;
+		}
+		
+		if(bienDem == soLanCanTim){
+			printf("%d \n", arr[idx]);
+			coTimThay = 1;
+		}
+		
+		idx ++;
+	}
+}
+
 main(){
 	int arr[MAX_SIZE];
 	int soluong = 0;
@@ -67,4 +104,9 @@ main(){
 	nhap(arr, &soluong);
 	inMang(arr, soluong);
 	timSoLonNhatVaNhoNhat(arr, soluong);
+	printf("\n");
+	printf("Nhap so lan xuat hien can tim:");
+	scanf("%d", &solancantim);
+	timSoLanXuatHien(arr, soluong, solancantim);
+	
 }
