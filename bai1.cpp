@@ -12,7 +12,7 @@ void nhap(int arr[], int *soluong){
 	
 	while(tempSoluong <= 0 || tempSoluong > MAX_SIZE){
 		printf("So luong phai > 0 va < %d, Nhap lai: ", MAX_SIZE);
-		scanf("%d", &soluong);
+		scanf("%d", &tempSoluong);
 	}
 	
 	*soluong = tempSoluong;
@@ -97,16 +97,58 @@ void timSoLanXuatHien(int arr[], int soluong, int soLanCanTim){
 	}
 }
 
+
+//bai 2
+void hoanDoi(int *a, int *b){
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+void bubbleSort_InTungBuoc(int daySo[], int soLuong) {
+    int i = 0;
+    while (i < soLuong - 1) {
+        int j = 0;
+        while (j < soLuong - i - 1) {
+            if (daySo[j] > daySo[j+1]) {
+             
+                hoanDoi(&daySo[j], &daySo[j+1] );
+            }
+            j++;
+        }
+        
+        // In ra trang thái dãy so sau moi buoc i
+        printf("Buoc %d: ", i + 1);
+        int k = 0;
+        while (k < soLuong) {
+            printf("%d ", daySo[k]);
+            k++;
+        }
+        printf("\n");
+        
+        i++;
+    }
+}
+
 main(){
+	
+	//bai 1
 	int arr[MAX_SIZE];
 	int soluong = 0;
 	int solancantim = 0;
+	//a
 	nhap(arr, &soluong);
 	inMang(arr, soluong);
+	//b-c
 	timSoLonNhatVaNhoNhat(arr, soluong);
 	printf("\n");
-	printf("Nhap so lan xuat hien can tim:");
-	scanf("%d", &solancantim);
-	timSoLanXuatHien(arr, soluong, solancantim);
+	//d
+	//	printf("\n");
+	//	printf("Nhap so lan xuat hien can tim:");
+	//	scanf("%d", &solancantim);
+	//	timSoLanXuatHien(arr, soluong, solancantim);
 	
+	
+	//bai 2
+bubbleSort_InTungBuoc(arr, soluong);
 }
